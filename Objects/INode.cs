@@ -5,22 +5,12 @@ using System.Text;
 
 namespace TreeTraversal.Objects
 {
+    public delegate void TreeVisitor<T>(INode<T> node);
     public interface INode<T>
     {
         T Member { get; }
         INode<T> Parent { get; set; }
-        void PrintName();
+        void Traverse(INode<T> node, TreeVisitor<T> visitor);
     }
 
-    public abstract class BaseMember
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-
-    public class AccountSegment : BaseMember
-    {
-        public string Type { get; set; }
-        public string AccountGroup { get; set; }
-    }
 }

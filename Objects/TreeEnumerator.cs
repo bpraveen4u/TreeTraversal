@@ -5,42 +5,68 @@ using System.Text;
 
 namespace TreeTraversal.Objects
 {
-    //public abstract class TreeEnumerator : IEnumerator<INode>
-    //{
-    //    private INode tree;
-    //    private INode current;
+    public abstract class TreeEnumerator<T> : IEnumerator<INode<T>> where T: BaseMember
+    {
+        protected INode<T> tree;
+        protected INode<T> current;
 
-    //    public TreeEnumerator(INode tree)
-    //    {
-    //        this.tree = tree;
-    //    }
+        public TreeEnumerator(INode<T> tree)
+        {
+            this.tree = tree;
+        }
 
-    //    public INode Current
-    //    {
-    //        get { return current; }
-    //    }
+        public INode<T> Current
+        {
+            get { return current; }
+        }
 
-    //    public void Dispose()
-    //    {
-    //    }
+        public void Dispose()
+        {
+        }
 
-    //    object System.Collections.IEnumerator.Current
-    //    {
-    //        get { return current; }
-    //    }
+        object System.Collections.IEnumerator.Current
+        {
+            get { return current; }
+        }
 
-    //    public abstract bool MoveNext();
+        public abstract bool MoveNext();
        
-    //    public void Reset()
-    //    {
-    //        current = null;
-    //    }
+        public void Reset()
+        {
+            current = null;
+        }
 
-    //    public virtual TreeEnumerator GetEnumerator()
-    //    {
-    //        return this;
-    //    }
-    //}
+        public virtual TreeEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+    }
 
+    public class SimpleTreeEnumerator<T> : TreeEnumerator<T> where T: BaseMember
+    {
 
+        public SimpleTreeEnumerator(INode<T> tree)
+            : base(tree)
+        {
+
+        }
+
+        public override bool MoveNext()
+        {
+            if (current == null)
+            {
+                current = tree;
+            }
+            else
+            {
+                //var node = current;
+                //do
+                //{
+                    
+                //} while (node.Parent == null);
+            }
+            return true;
+        }
+        
+    }
 }

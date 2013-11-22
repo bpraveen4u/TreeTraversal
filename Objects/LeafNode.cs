@@ -17,13 +17,7 @@ namespace TreeTraversal.Objects
         }
         public int Id { get; set; }
         public string Name { get; set; }
-
-        public void PrintName()
-        {
-            Console.WriteLine("--{0}_{1}", this.Member.Name, (this.Parent != null ? this.Parent.Member.Name : ""));
-        }
-
-
+        
         public INode<T> Parent
         {
             get
@@ -42,6 +36,20 @@ namespace TreeTraversal.Objects
         public T Member
         {
             get { return t; }
+        }
+
+        public void Traverse(INode<T> node, TreeVisitor<T> visitor)
+        {
+            visitor(node);
+            if (node is ParentNode<T>)
+            {
+                var parentNode = node as ParentNode<T>;
+                foreach (var child in parentNode.Children)
+                {
+                    Traverse(child, visitor);
+                }
+            }
+
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.ObjectModel;
 
 namespace TreeTraversal.Objects
 {
@@ -30,6 +31,13 @@ namespace TreeTraversal.Objects
             }
         }
 
+        public ReadOnlyCollection<INode<T>> Children { 
+            get
+            {
+                return children.AsReadOnly();
+            }
+        }
+
         public void Remove(INode<T> node)
         {
             children.Remove(node);
@@ -38,10 +46,10 @@ namespace TreeTraversal.Objects
         public void PrintName()
         {
             Console.WriteLine("-{0}_{1}", this.Member.Name, (this.Parent !=null? this.Parent.Member.Name: ""));
-            foreach (var child in children)
-            {
-                child.PrintName();
-            }
+            //foreach (var child in children)
+            //{
+            //    child.PrintName();
+            //}
         }
 
         public INode<T> Parent
@@ -62,6 +70,21 @@ namespace TreeTraversal.Objects
         public T Member
         {
             get { return t; }
+        }
+
+
+        public void Traverse(INode<T> node, TreeVisitor<T> visitor)
+        {
+            visitor(node);
+            if (node is ParentNode<T>)
+	        {
+                var parentNode = node as ParentNode<T>;
+		        foreach (var child in parentNode.Children)
+                {
+                    Traverse(child, visitor);
+                }
+	        }
+            
         }
     }
 }
