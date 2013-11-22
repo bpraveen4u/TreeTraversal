@@ -5,16 +5,22 @@ using System.Text;
 
 namespace TreeTraversal.Objects
 {
-    public interface INode
+    public interface INode<T>
     {
-        int Id { get; set; }
-        string Name { get; set; }
-        INode Parent { get; set; }
+        T Member { get; }
+        INode<T> Parent { get; set; }
         void PrintName();
     }
 
-    public class AccountSegment
+    public abstract class BaseMember
     {
-        
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class AccountSegment : BaseMember
+    {
+        public string Type { get; set; }
+        public string AccountGroup { get; set; }
     }
 }

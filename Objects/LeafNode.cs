@@ -5,24 +5,26 @@ using System.Text;
 
 namespace TreeTraversal.Objects
 {
-    public class LeafNode : INode
+    public class LeafNode<T> : INode<T> where T: BaseMember
     {
-        private INode parent;
+        private INode<T> parent;
+        private T t;
 
-        public LeafNode(string name)
+        public LeafNode(T t)
         {
-            this.Name = name;
+            this.t = t;
+            this.Parent = null;
         }
         public int Id { get; set; }
         public string Name { get; set; }
 
         public void PrintName()
         {
-            Console.WriteLine("--{0}_{1}", this.Name, (this.Parent != null ? this.Parent.Name : ""));
+            Console.WriteLine("--{0}_{1}", this.Member.Name, (this.Parent != null ? this.Parent.Member.Name : ""));
         }
 
 
-        public INode Parent
+        public INode<T> Parent
         {
             get
             {
@@ -35,6 +37,11 @@ namespace TreeTraversal.Objects
                     this.parent = value;
                 }
             }
+        }
+
+        public T Member
+        {
+            get { return t; }
         }
     }
 }

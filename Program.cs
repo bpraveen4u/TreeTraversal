@@ -17,26 +17,27 @@ namespace TreeTraversal
         }
 
 
-        private static INode GetStructure()
+        private static INode<AccountSegment> GetStructure()
         {
-            INode root = null;
+            INode<AccountSegment> root = null;
 
-            var parent = new ParentNode("root");
+            var parent = new ParentNode<AccountSegment>(new AccountSegment() { AccountGroup = "ss", Name = "root" });
+            
             root = parent;
-            parent.Add(new LeafNode("L1"));
-            parent.Add(new LeafNode("L2"));
+            parent.Add(new LeafNode<AccountSegment>(new AccountSegment() { AccountGroup = "ss", Name = "L1" }));
+            parent.Add(new LeafNode<AccountSegment>(new AccountSegment() { AccountGroup = "ss", Name = "L2" }));
 
-            var parent1 = new ParentNode("P1");
+            var parent1 = new ParentNode<AccountSegment>(new AccountSegment() { AccountGroup = "ss", Name = "P1" });
             parent.Add(parent1);
             //parent.Remove(parent1);
             //parent1.Parent = parent1;
-            parent1.Add(new LeafNode("L3"));
-            parent1.Add(new LeafNode("L4"));
+            parent1.Add(new LeafNode<AccountSegment>(new AccountSegment() { AccountGroup = "ss", Name = "L3" }));
+            parent1.Add(new LeafNode<AccountSegment>(new AccountSegment() { AccountGroup = "ss", Name = "L4" }));
 
-            var parent2 = new ParentNode("P2");
+            var parent2 = new ParentNode<AccountSegment>(new AccountSegment() { AccountGroup = "ss", Name = "P2" });
             parent1.Add(parent2);
-            parent2.Add(new LeafNode("L3"));
-            parent2.Add(new LeafNode("L4"));
+            parent2.Add(new LeafNode<AccountSegment>(new AccountSegment() { AccountGroup = "ss", Name = "L5" }));
+            parent2.Add(new LeafNode<AccountSegment>(new AccountSegment() { AccountGroup = "ss", Name = "L6" }));
             //parent.Remove(parent1);
             return root;
         }

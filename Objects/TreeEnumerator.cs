@@ -5,42 +5,42 @@ using System.Text;
 
 namespace TreeTraversal.Objects
 {
-    public abstract class TreeEnumerator : IEnumerator<INode>
-    {
-        private INode tree;
-        private INode current;
+    //public abstract class TreeEnumerator : IEnumerator<INode>
+    //{
+    //    private INode tree;
+    //    private INode current;
 
-        public TreeEnumerator(INode tree)
-        {
-            this.tree = tree;
-        }
+    //    public TreeEnumerator(INode tree)
+    //    {
+    //        this.tree = tree;
+    //    }
 
-        public INode Current
-        {
-            get { return current; }
-        }
+    //    public INode Current
+    //    {
+    //        get { return current; }
+    //    }
 
-        public void Dispose()
-        {
-        }
+    //    public void Dispose()
+    //    {
+    //    }
 
-        object System.Collections.IEnumerator.Current
-        {
-            get { return current; }
-        }
+    //    object System.Collections.IEnumerator.Current
+    //    {
+    //        get { return current; }
+    //    }
 
-        public abstract bool MoveNext();
+    //    public abstract bool MoveNext();
        
-        public void Reset()
-        {
-            current = null;
-        }
+    //    public void Reset()
+    //    {
+    //        current = null;
+    //    }
 
-        public virtual TreeEnumerator GetEnumerator()
-        {
-            return this;
-        }
-    }
+    //    public virtual TreeEnumerator GetEnumerator()
+    //    {
+    //        return this;
+    //    }
+    //}
 
 
 }

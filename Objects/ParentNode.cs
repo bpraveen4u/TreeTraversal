@@ -5,22 +5,23 @@ using System.Text;
 
 namespace TreeTraversal.Objects
 {
-    public class ParentNode : INode
+    public class ParentNode<T> : INode<T> where T : BaseMember
     {
-        private List<INode> children;
-        private INode parent;
+        private List<INode<T>> children;
+        private INode<T> parent;
+        private T t;
 
-        public ParentNode(string name)
+        public ParentNode(T t)
         {
-            children = new List<INode>();
-            this.Name = name;
+            children = new List<INode<T>>();
+            this.t = t;
             this.Parent = null;
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public void Add(INode node)
+        public void Add(INode<T> node)
         {
             if (!children.Contains(node))
             {
@@ -29,21 +30,21 @@ namespace TreeTraversal.Objects
             }
         }
 
-        public void Remove(INode node)
+        public void Remove(INode<T> node)
         {
             children.Remove(node);
         }
 
         public void PrintName()
         {
-            Console.WriteLine("-{0}_{1}", this.Name, (this.Parent !=null? this.Parent.Name: ""));
+            Console.WriteLine("-{0}_{1}", this.Member.Name, (this.Parent !=null? this.Parent.Member.Name: ""));
             foreach (var child in children)
             {
                 child.PrintName();
             }
         }
 
-        public INode Parent
+        public INode<T> Parent
         {
             get
             {
@@ -56,6 +57,11 @@ namespace TreeTraversal.Objects
                     this.parent = value;
                 }
             }
+        }
+
+        public T Member
+        {
+            get { return t; }
         }
     }
 }
